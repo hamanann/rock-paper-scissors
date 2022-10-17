@@ -1,3 +1,6 @@
+const resultMessage = document.querySelector('.results .message');
+
+
 function getComputerChoice() {
     let choice = Math.random() * 3;
     if (choice < 1) {
@@ -13,17 +16,16 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     playerSelection = capitalize(playerSelection);
     
-    let result;
     if (playerSelection === computerSelection) {
-        console.log("Draw!");
-        return "Draw!";
+        resultMessage.textContent = "Draw";
+        return "Draw";
     } else if (playerSelection === 'Rock' && computerSelection === 'Scissors'
             || playerSelection === 'Paper' && computerSelection === 'Rock'
             || playerSelection === 'Scissors' && computerSelection === 'Paper') {
-        console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+        resultMessage.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
         return `Win`;
     } else {
-        console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+        resultMessage.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
         return `Lose`;
     }
 }
@@ -34,7 +36,7 @@ function capitalize(str) {
 
 
 const buttons = document.querySelectorAll('.containerRPS button');
-buttons.forEach((btn) => {
+buttons.forEach(btn => {
     btn.addEventListener('click', () => {
         playRound(btn.id, getComputerChoice());
     });
