@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    text-align: center;
+    padding: 80px;
+    background-color:linen;
+}
+
+header {
+    font-size: 30px;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.results {
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 32px;
+}
+
+.score {
+    margin-top: 16px;
+}
+
+.buttons > button {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+#rock {
+    background-image: url("images/rock.png");
+    background-size: 200px;
+}
+
+#paper {
+    background-image: url("images/paper.png");
+    background-size: 200px;
+}
+
+
+#scissors {
+    background-image: url("images/scissors.png");
+    background-size: 200px;
+}
+
+.restartButton {
+   font-size: 18px;
+   padding: 8px 16px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+

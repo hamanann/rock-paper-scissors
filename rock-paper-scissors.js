@@ -1,6 +1,8 @@
 const resultMessage = document.querySelector('.results .message');
 const score = document.querySelector('.results .score');
-score.textContent = "0 - 0";
+// const resultsContainer = document.querySelector('.results');
+const buttons = document.querySelectorAll('.buttons button');
+const restartButton = document.querySelector('.restartButton');
 let scorePlayer = 0;
 let scoreBot = 0;
 
@@ -33,7 +35,9 @@ function playRound(playerSelection, computerSelection) {
     }
 
     displayResults(result, playerSelection, computerSelection);
-
+    if (scorePlayer === 5 || scoreBot === 5) {
+        endGame();
+    }
 }
 
 function displayResults(result, playerSelection, computerSelection) {
@@ -48,14 +52,44 @@ function displayResults(result, playerSelection, computerSelection) {
     score.textContent = `${scorePlayer} - ${scoreBot}`;
 }
 
+function endGame() {
+    if (scorePlayer === 5) {
+        resultMessage.textContent = 'You won';
+    } else {
+        resultMessage.textContent = 'You lost';
+    }
+
+    toggleButtons();
+}
+
+function restartGame() {
+    scorePlayer = 0;
+    scoreBot = 0;
+    score.textContent = `${scorePlayer} - ${scoreBot}`;
+    resultMessage.textContent = "First to 5 wins!";
+    toggleButtons();
+}
+
+function toggleButtons() {
+    if (restartButton.classList.contains('hidden')) {
+        buttons.forEach(button => button.disabled = true);
+        restartButton.classList.remove('hidden');
+    } else {
+        buttons.forEach(button => button.disabled = false);
+        restartButton.classList.add("hidden");
+    }
+    
+}
+
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 
-const buttons = document.querySelectorAll('.containerRPS button');
 buttons.forEach(btn => {
     btn.addEventListener('click', () => {
         playRound(btn.id, getComputerChoice());
     });
 });
+
+restartButton.addEventListener('click', () => restartGame());
