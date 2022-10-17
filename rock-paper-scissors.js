@@ -32,18 +32,18 @@ function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function game() {
-    let scoreComputer = 0;
-    let scorePlayer = 0;
-    for (let i = 0; i < 5; i++) {
-        let playerChoice = prompt("Chose: rock, paper or scissors");
-        let result = playRound(playerChoice, getComputerChoice());
-        if (result === "Win") {
-            scorePlayer++;
-        } else if (result === "Lose") {
-            scoreComputer++;
-        }
-    }
-}
+// function game() {
+//     let scoreComputer = 0;
+//     let scorePlayer = 0;
+//     for (let i = 0; i < 5; i++) {
+//         let playerChoice = prompt("Chose: rock, paper or scissors");
+//         let result = playRound(playerChoice, getComputerChoice());
+//         if (result === "Win") {
+//             scorePlayer++;
+//         } else if (result === "Lose") {
+//             scoreComputer++;
+//         }
+//     }
+// }
 
-game();
+// game();
