@@ -1,5 +1,8 @@
 const resultMessage = document.querySelector('.results .message');
-
+const score = document.querySelector('.results .score');
+score.textContent = "0 - 0";
+let scorePlayer = 0;
+let scoreBot = 0;
 
 function getComputerChoice() {
     let choice = Math.random() * 3;
@@ -16,18 +19,33 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     playerSelection = capitalize(playerSelection);
     
+    let result;
     if (playerSelection === computerSelection) {
-        resultMessage.textContent = "Draw";
-        return "Draw";
+        result = "Draw";
     } else if (playerSelection === 'Rock' && computerSelection === 'Scissors'
             || playerSelection === 'Paper' && computerSelection === 'Rock'
             || playerSelection === 'Scissors' && computerSelection === 'Paper') {
-        resultMessage.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
-        return `Win`;
+        scorePlayer++;
+        result = `Win`;
     } else {
-        resultMessage.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
-        return `Lose`;
+        scoreBot++;
+        result = `Lose`;
     }
+
+    displayResults(result, playerSelection, computerSelection);
+
+}
+
+function displayResults(result, playerSelection, computerSelection) {
+    if (result === 'Draw') {
+        resultMessage.textContent = `Draw`;
+    } else if (result === 'Win') {
+        resultMessage.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+    } else {
+        resultMessage.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+    }
+
+    score.textContent = `${scorePlayer} - ${scoreBot}`;
 }
 
 function capitalize(str) {
@@ -41,19 +59,3 @@ buttons.forEach(btn => {
         playRound(btn.id, getComputerChoice());
     });
 });
-
-// function game() {
-//     let scoreComputer = 0;
-//     let scorePlayer = 0;
-//     for (let i = 0; i < 5; i++) {
-//         let playerChoice = prompt("Chose: rock, paper or scissors");
-//         let result = playRound(playerChoice, getComputerChoice());
-//         if (result === "Win") {
-//             scorePlayer++;
-//         } else if (result === "Lose") {
-//             scoreComputer++;
-//         }
-//     }
-// }
-
-// game();
