@@ -32,6 +32,14 @@ function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+
+const buttons = document.querySelectorAll('.containerRPS button');
+buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        playRound(btn.id, getComputerChoice());
+    });
+});
+
 // function game() {
 //     let scoreComputer = 0;
 //     let scorePlayer = 0;
